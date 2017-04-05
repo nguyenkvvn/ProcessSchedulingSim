@@ -15,13 +15,14 @@ namespace ProcessSchedulingSim
         List<int> LPriority;
         List<int> LSubmissionTime;
         List<int> LCPUBurstTime;
-        List<ProcessProfile> listOfProfiles;
+        public List<ProcessProfile> listOfProfiles;
 
         public ProcessProfiles(string pathToInput)
         {
             LPriority = new List<int>();
             LSubmissionTime = new List<int>();
             LCPUBurstTime = new List<int>();
+
             listOfProfiles = new List<ProcessProfile>();
             interpret(pathToInput);
         }
@@ -48,19 +49,19 @@ namespace ProcessSchedulingSim
                             case 0:
                                 csvCounter++;
                                 LPriority.Add(System.Convert.ToInt32(field));
-                                Console.Write("Row Parsed: " + field);
+                                //VERBOSE: Console.Write("Row Parsed: " + field);
                                 break;
                             //Submission Time Column
                             case 1:
                                 csvCounter++;
                                 LSubmissionTime.Add(System.Convert.ToInt32(field));
-                                Console.Write("," + field);
+                                //VERBOSE: Console.Write("," + field);
                                 break;
                             //CPU Burst Time Column
                             case 2:
                                 csvCounter = 0;
                                 LCPUBurstTime.Add(System.Convert.ToInt32(field));
-                                Console.WriteLine("," + field);
+                                //VERBOSE: Console.WriteLine("," + field);
                                 break;
                         }
                     }
@@ -71,6 +72,8 @@ namespace ProcessSchedulingSim
             for (int i = 0; i < LPriority.Count; i++)
             {
                 ProcessProfile pp = new ProcessProfile(LPriority[i], LSubmissionTime[i], LCPUBurstTime[i]);
+
+                pp.processNo = i;
 
                 //drop it into the list of profiles
                 listOfProfiles.Add(pp);

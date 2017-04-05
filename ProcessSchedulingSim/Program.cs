@@ -24,12 +24,23 @@ namespace ProcessSchedulingSim
 
             ProcessProfiles pp = new ProcessProfiles(path);
 
+            Processor CPU;
+
             //simulate running the following scheduling algorithms
             //FCFS
-            //SJF
-            //Priority First
-            //Round Robin
+            CPU = new Processor(pp);
+            CPU.runFCFS();
 
+            //SJF
+
+            //Priority First
+
+            //Round Robin
+            CPU = new Processor(pp);
+            CPU.runRR();
+
+            Console.WriteLine("\nSimulation complete. Press any key to exit...");
+            //prevent the console from closing before output can be read
             Console.ReadKey();
         }
     }
