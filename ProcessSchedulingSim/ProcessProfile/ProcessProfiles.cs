@@ -81,5 +81,42 @@ namespace ProcessSchedulingSim
 
             return true;
         }
+
+        public override string ToString()
+        {
+            string printme = "ProcessNO\tPriority\tSubmitTime\tCPUBurstTime\tCompleteOrder\n";
+
+            foreach (ProcessProfile p in listOfProfiles)
+            {
+                printme = printme + p.processNo + "\t" + p.Priority + "\t" + p.SubmissionTime + "\t" + p.CPUBurstTime + "\t" + p.completeOrder + "\n";
+            }
+
+            return printme;
+        }
+    }
+
+    class ProcessProfile
+    {
+        public int Priority;
+        public int SubmissionTime;
+        public int CPUBurstTime;
+
+        public int CPUBurstCount;
+        Boolean done;
+        public int completeOrder;
+
+        public int processNo;
+        public int clockStart;
+        public int clockEnd;
+
+        public ProcessProfile(int p, int st, int cbt)
+        {
+            Priority = p;
+            SubmissionTime = st;
+            CPUBurstTime = cbt;
+            done = false;
+            completeOrder = 0;
+            CPUBurstCount = 0;
+        }
     }
 }

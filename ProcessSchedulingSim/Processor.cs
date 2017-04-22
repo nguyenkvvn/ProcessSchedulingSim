@@ -14,7 +14,9 @@ namespace ProcessSchedulingSim
         int timeElapsed = 0;
         //List<int> waitTimes = new List<int>();
         //List<int> turnAroundTimes = new List<int>();
-        ProcessProfiles targetProfile;
+        public ProcessProfiles targetProfile;
+        //counter to track completion order
+        int completeCounter = 0;
 
         //a processor needs processes to actually process, so it will take a ProcessProfiles container as a constructor input.
         public Processor(ProcessProfiles pps)
@@ -92,6 +94,8 @@ namespace ProcessSchedulingSim
                 {
                     if (readyQueue[i].CPUBurstCount == readyQueue[i].CPUBurstTime)
                     {
+                        completeCounter++;
+                        readyQueue[i].completeOrder = completeCounter;
                         //remove the process from the ready queue and move it into the completed list
                         completedL.Add(readyQueue[i]);
                         readyQueue.Remove(readyQueue[i]);
@@ -195,6 +199,8 @@ namespace ProcessSchedulingSim
                 {
                     if (readyQueue[i].CPUBurstCount == readyQueue[i].CPUBurstTime)
                     {
+                        completeCounter++;
+                        readyQueue[i].completeOrder = completeCounter;
                         //remove the process from the ready queue and move it into the completed list
                         completedL.Add(readyQueue[i]);
                         readyQueue.Remove(readyQueue[i]);
@@ -311,6 +317,8 @@ namespace ProcessSchedulingSim
                 {
                     if (readyQueue[i].CPUBurstCount >= readyQueue[i].CPUBurstTime)
                     {
+                        completeCounter++;
+                        readyQueue[i].completeOrder = completeCounter;
                         //remove the process from the ready queue and move it into the completed list
                         completedL.Add(readyQueue[i]);
                         readyQueue.Remove(readyQueue[i]);
@@ -413,6 +421,9 @@ namespace ProcessSchedulingSim
                     if (readyQueue[i].CPUBurstCount == readyQueue[i].CPUBurstTime)
                     {
                         //remove the process from the ready queue and move it into the completed list
+                        //note the process complete order and increment the counter
+                        completeCounter++;
+                        readyQueue[i].completeOrder = completeCounter;
                         completedL.Add(readyQueue[i]);
                         readyQueue.Remove(readyQueue[i]);
                         //add a turnaround time value for the completed process

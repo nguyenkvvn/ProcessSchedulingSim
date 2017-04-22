@@ -31,18 +31,22 @@ namespace ProcessSchedulingSim
             //FCFS
             CPU = new Processor(pp);
             CPU.runFCFS();
+            Console.WriteLine(CPU.targetProfile);
 
             //SJF
             CPU = new Processor(pp);
             CPU.runSJF();
+            Console.WriteLine(CPU.targetProfile);
 
             //Priority First
             CPU = new Processor(pp);
             CPU.runPF();
+            Console.WriteLine(CPU.targetProfile);
 
             //Round Robin
             CPU = new Processor(pp);
             CPU.runRR();
+            Console.WriteLine(CPU.targetProfile);
 
             Console.WriteLine("\nSimulation complete. Press any key to exit...");
             //prevent the console from closing before output can be read
